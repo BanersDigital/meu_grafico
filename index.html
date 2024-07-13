@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Barra Horizontal com Gradiente</title>
+    <style>
+        /* Estilos para o contêiner do gráfico */
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Estilos para a barra horizontal */
+        .barra {
+            position: relative;
+            width: 100%;
+            height: 35px; /* Altura da barra */
+            background: linear-gradient(to right, #FF0603, #FF4400, #FFC000, #08d65a, #00B147, #00B147); /* Gradiente de cores */
+            border: 1px solid #ffff; /* Borda */
+        }
+
+        /* Estilos para o marcador em 3D */
+        .marcador {
+            position: absolute;
+            top: -5px;
+            bottom: 2px;
+            left: 0;
+            width: 17px; /* Largura do marcador */
+            height: 40px; /* Altura do marcador (igual à da barra) */
+            background-color: gray; /* Cor do marcador */
+            border-left: 5px gradient #5B5B5B; /* Borda esquerda */
+            border-right: 5px solid #818181; /* Borda direita */
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2); /* Sombra 3D */
+        }
+
+/* Oculta o controle de entrada de faixa */
+        input[type="range"] {
+            display: none;
+        }
+
+        /* Oculta o valor */
+        .valor {
+            display: none;
+        }
+
+        /* Estilos para o valor */
+        .valor {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Oculta o controle de entrada de faixa */
+        input[type="range"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <div class="barra">
+            <div class="marcador"></div>
+        </div>
+        <p class="valor" id="valor">0</p>
+        <input type="range" id="inputValor" min="0" max="100" step="1" value="0">
+    </div>
+
+    <script>
+        // Elementos HTML
+        const barra = document.querySelector('.barra');
+        const marcador = document.querySelector('.marcador');
+        const valorTexto = document.getElementById('valor');
+        const inputValor = document.getElementById('inputValor');
+        // Função para atualizar a barra com o valor dinâmico
+        function atualizarBarra(valor) {
+            const largura = valor + '%';
+            marcador.style.left = largura;
+            valorTexto.textContent = valor;
+        }
+        // Obtém o valor inicial a partir do input resultado copy's value
+        let valorInicial = 10 ;
+        atualizarBarra(valorInicial);
+
+        // Evento para atualizar a barra quando o input for alterado
+        inputValor.addEventListener('input', () => {
+            valorInicial = 35 ;
+            atualizarBarra(valorInicial);
+        });
+    </script>
+</body>
+</html>
